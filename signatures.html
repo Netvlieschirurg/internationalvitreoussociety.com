@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>IVS Email Signatures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: masthead, then a workbench (signature list beside a white sheet that previews the email signature, with its editable lines), then the Gmail steps. */
+:root {
+  --bg: #F2F5F9;
+  --surface: #FFFFFF;
+  --ink: #0D1A2D;
+  --muted: #55657B;
+  --line: #D5DDE8;
+  --navy: #033B84;
+  --gold: #CE971D;
+  --btn-bg: #033B84;
+  --btn-fg: #FFFFFF;
+  --chip-on: #E4ECF8;
+  --paper: #FFFFFF;
+  --paper-edge: #E1E7EF;
+  --ok: #1D6B3C;
+  --warn: #9A4B07;
+  --f-display: "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --f-body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A1322; --surface: #111C30; --ink: #E6ECF4; --muted: #9AA9BF; --line: #24324A;
+    --navy: #A3C2F5; --gold: #D9A93E; --btn-bg: #3C72D2; --btn-fg: #FFFFFF; --chip-on: #1A2B47;
+    --paper: #FFFFFF; --paper-edge: #2A3953; --ok: #7DD3A0; --warn: #F2B36B;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A1322; --surface: #111C30; --ink: #E6ECF4; --muted: #9AA9BF; --line: #24324A;
+  --navy: #A3C2F5; --gold: #D9A93E; --btn-bg: #3C72D2; --btn-fg: #FFFFFF; --chip-on: #1A2B47;
+  --paper: #FFFFFF; --paper-edge: #2A3953; --ok: #7DD3A0; --warn: #F2B36B;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.wrap {
+  max-width: 1020px;
+  margin: 0 auto;
+  padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  gap: 32px;
+}
+
+/* Masthead */
+.masthead { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 28px; }
+.mark {
+  background: var(--paper);
+  border: 1px solid var(--paper-edge);
+  border-radius: 6px;
+  padding: 10px 14px;
+  line-height: 0;
+}
+.mark img { width: 168px; height: auto; display: block; }
+.masthead .text { min-width: 0; flex: 1 1 320px; }
+h1 {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3.2vw, 2.2rem);
+  line-height: 1.15;
+  margin: 0 0 6px;
+  text-wrap: balance;
+}
+.lede { margin: 0; color: var(--muted); max-width: 62ch; }
+
+/* Workbench */
+.bench { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 24px; align-items: start; }
+.picker { display: grid; gap: 6px; }
+.picker h2, .panel-label {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 4px;
+}
+.pick {
+  appearance: none; text-align: left; width: 100%;
+  background: transparent; color: var(--ink);
+  border: 1px solid transparent; border-radius: 6px;
+  padding: 9px 12px; font: inherit; cursor: pointer;
+  display: grid; gap: 1px;
+}
+.pick:hover { border-color: var(--line); background: var(--surface); }
+.pick[aria-pressed="true"] { background: var(--chip-on); border-color: var(--line); }
+.pick .who { font-weight: 600; font-size: 0.95rem; }
+.pick .addr { font-size: 0.8rem; color: var(--muted); overflow-wrap: anywhere; }
+.pick:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible {
+  outline: 2px solid var(--navy); outline-offset: 2px;
+}
+
+.panel { min-width: 0; display: grid; gap: 18px; }
+.sheet {
+  background: var(--paper);
+  border: 1px solid var(--paper-edge);
+  border-radius: 6px;
+  padding: 28px 28px 30px;
+  overflow-x: auto;
+  min-height: 210px;
+}
+.sheet .salutation { font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #6B7785; margin: 0 0 14px; }
+.sheet a { cursor: default; }
+
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.btn {
+  appearance: none; border: 0; border-radius: 6px;
+  background: var(--btn-bg); color: var(--btn-fg);
+  font: inherit; font-weight: 600; padding: 10px 18px; cursor: pointer;
+}
+.btn:hover { filter: brightness(1.08); }
+.link-btn {
+  appearance: none; border: 0; background: none; padding: 4px 2px;
+  color: var(--navy); font: inherit; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+}
+.status { font-size: 0.9rem; min-height: 1.4em; }
+.status.ok { color: var(--ok); }
+.status.warn { color: var(--warn); }
+
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+.field { display: grid; gap: 5px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 0.85rem; font-weight: 600; }
+.field input {
+  width: 100%; font: inherit; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  padding: 9px 11px;
+}
+.field .hint { font-size: 0.8rem; color: var(--muted); }
+
+/* Gmail steps */
+.howto { border-top: 1px solid var(--line); padding-top: 26px; display: grid; gap: 18px; }
+h2.section {
+  font-family: var(--f-display); font-weight: 400; font-size: 1.45rem; margin: 0; text-wrap: balance;
+}
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 10px; max-width: 70ch; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 4px; }
+.steps li::before {
+  content: counter(step); font-family: var(--f-display); color: var(--gold); font-size: 1.15rem; line-height: 1.35;
+}
+.steps b { font-weight: 600; }
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.note { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; min-width: 0; }
+.note h3 { font-size: 0.95rem; margin: 0 0 4px; }
+.note p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+kbd {
+  font-family: var(--f-body); font-size: 0.82rem; border: 1px solid var(--line); border-bottom-width: 2px;
+  border-radius: 4px; padding: 0 5px; background: var(--surface);
+}
+
+@media (max-width: 760px) {
+  .bench { grid-template-columns: minmax(0, 1fr); }
+  .picker { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .picker h2 { grid-column: 1 / -1; }
+  .fields { grid-template-columns: minmax(0, 1fr); }
+  .sheet { padding: 20px 18px 22px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mark"><img src="https://internationalvitreoussociety.com/ivs-logo-email.gif" alt="International Vitreous Society" width="186" height="66"></div>
+    <div class="text">
+      <h1>Email signatures</h1>
+      <p class="lede">For accounts at internationalvitreoussociety.com. Pick your signature, check the lines, copy it and paste it into Gmail. Changes you make here stay in your own browser.</p>
+    </div>
+  </header>
+
+  <main class="bench">
+    <nav class="picker" aria-label="Signatures">
+      <h2>Signature for</h2>
+      <div id="pickList" style="display: contents;"></div>
+    </nav>
+
+    <section class="panel" aria-labelledby="previewLabel">
+      <div>
+        <p class="panel-label" id="previewLabel">Preview, as it appears under an email</p>
+        <div class="sheet">
+          <p class="salutation">Kind regards,</p>
+          <div id="preview"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="copyBtn" type="button">Copy signature</button>
+        <button class="link-btn" id="resetBtn" type="button">Undo my changes</button>
+        <span class="status" id="status" role="status" aria-live="polite"></span>
+      </div>
+
+      <form class="fields" id="fields" autocomplete="off" novalidate>
+        <div class="field full">
+          <label for="f-name" id="l-name">Name and titles</label>
+          <input id="f-name" name="name" type="text">
+        </div>
+        <div class="field" data-person>
+          <label for="f-role">Role in the Society</label>
+          <input id="f-role" name="role" type="text">
+          <span class="hint">Board positions are still to be assigned.</span>
+        </div>
+        <div class="field" data-person>
+          <label for="f-inst">Institution</label>
+          <input id="f-inst" name="inst" type="text">
+        </div>
+        <div class="field full">
+          <label for="f-email">IVS email address</label>
+          <input id="f-email" name="email" type="email" inputmode="email">
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <section class="howto" aria-labelledby="howtoTitle">
+    <h2 class="section" id="howtoTitle">Add it to Gmail</h2>
+    <ol class="steps">
+      <li><span>Open Gmail on a computer, signed in with your IVS address.</span></li>
+      <li><span>Click the gear icon at the top right, then <b>See all settings</b>.</span></li>
+      <li><span>On the <b>General</b> tab, scroll to <b>Signature</b> and click <b>Create new</b>. Name it <b>IVS</b>.</span></li>
+      <li><span>Click into the signature box and paste: <kbd>Cmd</kbd>+<kbd>V</kbd> on a Mac, <kbd>Ctrl</kbd>+<kbd>V</kbd> on Windows.</span></li>
+      <li><span>Under <b>Signature defaults</b>, choose <b>IVS</b> for new emails and for replies and forwards.</span></li>
+      <li><span>Scroll to the bottom of the page and click <b>Save Changes</b>.</span></li>
+    </ol>
+    <div class="notes">
+      <div class="note">
+        <h3>Above the quoted text</h3>
+        <p>Tick <b>Insert signature before quoted text in replies</b>, so the signature sits directly under your reply.</p>
+      </div>
+      <div class="note">
+        <h3>Sending as info@</h3>
+        <p>If you can send from info@, pick that address in the menu under Signature defaults and choose the society signature for it.</p>
+      </div>
+      <div class="note">
+        <h3>Gmail on your phone</h3>
+        <p>The Gmail app has its own text-only signature, set in the app under Settings for your IVS account.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var SITE = "https://internationalvitreoussociety.com";
+  var LOGO_LIVE = SITE + "/ivs-logo-email.gif";   // used in the copied signature
+  var LOGO_PREVIEW = LOGO_LIVE;                    // shown on this page
+  var STORE_KEY = "ivs-signatures-v1";
+
+  var DEFAULTS = {
+    info:      { type: "society", who: "Society address", name: "International Vitreous Society", email: "info@internationalvitreoussociety.com" },
+    koen:      { type: "person", who: "Koen A. van Overdam", name: "Koen A. van Overdam, MD, PhD", role: "Founding Chair", inst: "Erasmus MC Rotterdam · Retina Operatiecentrum Ede", email: "koen@internationalvitreoussociety.com" },
+    andre:     { type: "person", who: "André Schulz", name: "Prof. Dr. rer. nat. André Schulz", role: "Founding Board Member", inst: "Rostock University Medical Center, Germany", email: "andre@internationalvitreoussociety.com" },
+    roberto:   { type: "person", who: "Roberto dell'Omo", name: "Prof. Roberto dell'Omo, MD", role: "Founding Board Member", inst: "University of Molise, Campobasso, Italy", email: "roberto@internationalvitreoussociety.com" },
+    stefaniya: { type: "person", who: "Stefaniya Boneva", name: "PD Dr. Stefaniya Boneva, FEBO", role: "Founding Board Member", inst: "University Medical Center Freiburg, Germany", email: "stefaniya@internationalvitreoussociety.com" },
+    other:     { type: "person", who: "Someone else", name: "", role: "Board Member", inst: "", email: "" }
+  };
+  var ORDER = ["info", "koen", "andre", "roberto", "stefaniya", "other"];
+
+  var edits = {};
+  var current = "info";
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+    if (saved && typeof saved === "object") {
+      if (saved.edits && typeof saved.edits === "object") edits = saved.edits;
+      if (saved.current && DEFAULTS[saved.current]) current = saved.current;
+    }
+  } catch (e) {}
+  var hash = (location.hash || "").replace("#", "");
+  if (DEFAULTS[hash]) current = hash;
+
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ edits: edits, current: current })); } catch (e) {}
+  }
+  function data(id) {
+    var d = {}, base = DEFAULTS[id], ed = edits[id] || {};
+    for (var k in base) d[k] = base[k];
+    for (var j in ed) if (typeof ed[j] === "string") d[j] = ed[j];
+    return d;
+  }
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  var F = "font-family:Arial,Helvetica,sans-serif;";
+  function row(text, style) {
+    return '<tr><td style="' + F + style + '">' + text + "</td></tr>";
+  }
+  function link(href, label, color) {
+    return '<a href="' + esc(href) + '" style="color:' + color + ';text-decoration:none;">' + esc(label) + "</a>";
+  }
+
+  function sigHTML(d, logo, forPreview) {
+    var ph = function (v, p) { return v ? esc(v) : (forPreview ? '<span style="color:#A7B1BD;">' + p + "</span>" : ""); };
+    var rows = [];
+    if (d.type === "society") {
+      rows.push(row(ph(d.name, "Society name"), "font-size:13px;font-weight:bold;color:#033B84;padding:8px 0 2px 0;"));
+      rows.push(row(link(SITE, "www.internationalvitreoussociety.com", "#033B84"), "font-size:12.5px;color:#033B84;padding:0 0 2px 0;"));
+      rows.push(row(d.email ? link("mailto:" + d.email, d.email, "#033B84") : ph("", "address@internationalvitreoussociety.com"), "font-size:12.5px;color:#033B84;"));
+    } else {
+      rows.push(row(ph(d.name, "Name and titles"), "font-size:13px;font-weight:bold;color:#033B84;padding:8px 0 1px 0;"));
+      if (d.role || forPreview) rows.push(row(ph(d.role, "Role"), "font-size:12.5px;color:#033B84;padding:0 0 4px 0;"));
+      if (d.inst || forPreview) rows.push(row(ph(d.inst, "Institution"), "font-size:12px;color:#5B7186;padding:0 0 4px 0;"));
+      rows.push(row(d.email ? link("mailto:" + d.email, d.email, "#033B84") : ph("", "name@internationalvitreoussociety.com"), "font-size:12px;color:#033B84;padding:0 0 2px 0;"));
+      rows.push(row(link(SITE, "www.internationalvitreoussociety.com", "#033B84"), "font-size:12px;color:#033B84;"));
+    }
+    return '<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;' + F + '">' +
+      '<tr><td style="border-left:2px solid #CE971D;padding:2px 0 2px 12px;vertical-align:top;">' +
+      '<img src="' + logo + '" width="186" height="66" alt="International Vitreous Society" style="display:block;border:0;width:186px;height:66px;">' +
+      '<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' + rows.join("") + "</table>" +
+      "</td></tr></table>";
+  }
+  function sigText(d) {
+    var lines = [d.name];
+    if (d.type === "person") {
+      if (d.role) lines.push(d.role + ", International Vitreous Society");
+      if (d.inst) lines.push(d.inst);
+      lines.push(d.email, "www.internationalvitreoussociety.com");
+    } else {
+      lines.push("www.internationalvitreoussociety.com", d.email);
+    }
+    return lines.filter(Boolean).join("\n");
+  }
+
+  var pickList = document.getElementById("pickList");
+  var preview = document.getElementById("preview");
+  var statusEl = document.getElementById("status");
+  var inputs = {
+    name: document.getElementById("f-name"),
+    role: document.getElementById("f-role"),
+    inst: document.getElementById("f-inst"),
+    email: document.getElementById("f-email")
+  };
+  var personFields = document.querySelectorAll("[data-person]");
+
+  function buildPicker() {
+    pickList.innerHTML = "";
+    ORDER.forEach(function (id) {
+      var d = data(id);
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "pick";
+      b.setAttribute("data-id", id);
+      b.setAttribute("aria-pressed", id === current ? "true" : "false");
+      var addr = d.email ? d.email.split("@")[0] + "@" : "any address";
+      b.innerHTML = '<span class="who">' + esc(DEFAULTS[id].who) + '</span><span class="addr">' + esc(addr) + "</span>";
+      b.addEventListener("click", function () { select(id); });
+      pickList.appendChild(b);
+    });
+  }
+  function select(id) {
+    current = id;
+    try { history.replaceState(null, "", "#" + id); } catch (e) {}
+    save();
+    setStatus("", "");
+    render(true);
+  }
+  function render(fillInputs) {
+    var d = data(current);
+    Array.prototype.forEach.call(pickList.children, function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-id") === current ? "true" : "false");
+    });
+    var isPerson = d.type === "person";
+    Array.prototype.forEach.call(personFields, function (el) { el.hidden = !isPerson; });
+    document.getElementById("l-name").textContent = isPerson ? "Name and titles" : "Society name";
+    if (fillInputs) {
+      inputs.name.value = d.name || "";
+      inputs.role.value = d.role || "";
+      inputs.inst.value = d.inst || "";
+      inputs.email.value = d.email || "";
+    }
+    preview.innerHTML = sigHTML(d, LOGO_PREVIEW, true);
+  }
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+  }
+
+  Object.keys(inputs).forEach(function (key) {
+    inputs[key].addEventListener("input", function () {
+      edits[current] = edits[current] || {};
+      edits[current][key] = inputs[key].value.trim();
+      save();
+      setStatus("", "");
+      render(false);
+      if (key === "email") buildPicker();
+    });
+  });
+  document.getElementById("fields").addEventListener("submit", function (e) { e.preventDefault(); });
+  preview.addEventListener("click", function (e) { if (e.target.closest("a")) e.preventDefault(); });
+
+  document.getElementById("resetBtn").addEventListener("click", function () {
+    delete edits[current];
+    save();
+    buildPicker();
+    render(true);
+    setStatus("Back to the original lines.", "ok");
+  });
+
+  // A copy started on this page always carries the live signature, with the logo from the website.
+  var pending = null;
+  document.addEventListener("copy", function (e) {
+    var sel = window.getSelection();
+    var inPreview = sel && sel.rangeCount && preview.contains(sel.getRangeAt(0).commonAncestorContainer);
+    if (!pending && !inPreview) return;
+    var d = data(current);
+    var payload = pending || { html: sigHTML(d, LOGO_LIVE, false), text: sigText(d) };
+    if (e.clipboardData) {
+      e.clipboardData.setData("text/html", payload.html);
+      e.clipboardData.setData("text/plain", payload.text);
+      e.preventDefault();
+    }
+  });
+
+  function copyWithCommand(payload) {
+    pending = payload;
+    var ok = false;
+    try {
+      var sel = window.getSelection();
+      var range = document.createRange();
+      range.selectNodeContents(preview);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      ok = document.execCommand("copy");
+      sel.removeAllRanges();
+    } catch (e) { ok = false; }
+    pending = null;
+    return ok;
+  }
+
+  document.getElementById("copyBtn").addEventListener("click", function () {
+    var d = data(current);
+    if (!d.name || !d.email) {
+      setStatus("Fill in the name and the email address first.", "warn");
+      return;
+    }
+    var payload = { html: sigHTML(d, LOGO_LIVE, false), text: sigText(d) };
+    var done = function () { setStatus("Copied. Now paste it into the signature box in Gmail.", "ok"); };
+    var fallback = function () {
+      if (copyWithCommand(payload)) done();
+      else setStatus("Copying is blocked here. Select the signature in the preview and press Cmd+C or Ctrl+C.", "warn");
+    };
+    try {
+      if (navigator.clipboard && window.ClipboardItem) {
+        var item = new ClipboardItem({
+          "text/html": new Blob([payload.html], { type: "text/html" }),
+          "text/plain": new Blob([payload.text], { type: "text/plain" })
+        });
+        navigator.clipboard.write([item]).then(done, fallback);
+      } else {
+        fallback();
+      }
+    } catch (e) {
+      fallback();
+    }
+  });
+
+  buildPicker();
+  render(true);
+})();
+</script>
+</body>
+</html>
