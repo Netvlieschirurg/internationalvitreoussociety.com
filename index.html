@@ -4,7 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="International Vitreous Society: an international, non-profit scientific society dedicated to the vitreous as a structure in its own right, from basic science to clinical therapy.">
-<title>International Vitreous Society</title>
+<title>International Vitreous Society | From basic science to clinical therapy</title>
+<link rel="canonical" href="https://internationalvitreoussociety.com/">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAYFBMVEX////+/v////7//v7+/v79/v7+/vz9/f78/f37/P39/fr7+fX09vnz8ev36szk6vLx3bXu0ZPT1dHqv2LhsUrepCXamhO9r4qHo8exijpeg7JFb6YxYZ4PRo0FO4YAKnwsJs8oAAAB4UlEQVR42q1T2XLkIBBrT2wuc4Mpygf8/19GjCeb2VQew4PLgFoItSD647FIKZZFSDH/ui342/83ZH6NseRi3Y/z2KMmklh7B0iieLTee7ta6213A/EN4Bzb2NxrdFqD6GoRiH8AQVRbv6pz0d0Hy3pVkl8AQfpAtY4g8ClnK1ZF7qwkboDApF+R6hlt8qEU82HXlTR0LAOA+rOfjvbLpBy837wlk4InXeXyvLE8+qGpdpeLzd4YMiakrVhyQ9BC09F3Sa5XX7ZtCzSxNaS8lawe0DBBX4Pe6UlQNjspNgBbysUTA4Hehyd8vk6DekNsZgSp1ueSSOEIPVzlpNu+ZmuVmmfGcJGcti2z2ymUc3JtJx8gkCuy0FJK2jxjY58/jQYDTSZknPuwBWJKCcReTgLE6TwfihKWV0YeAkrxs3oCQK/hOm4xLQmVm/kgCoNAkX6maNEVCH3tJA0qM645ZAZLd+dgdYTRc+yRlgACxhQYgl/r3a2RlYpWoeGOPAweTviE+TG/ujkQHXbVs65pVVxIBMEdp74jdectNqTM1RrN8266tkPecaBXIh0Sd9SIxAG3N/Tnwd9D+5XZdl34XjhQ8P9TPR6FG6E/wfNK/Y/nI5bf/98Gl5JP4+VNf/icPwFrTCUHWR/0XQAAAABJRU5ErkJggg==">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="International Vitreous Society">
+<meta property="og:title" content="International Vitreous Society">
+<meta property="og:description" content="An international, non-profit scientific society dedicated to the vitreous as a structure in its own right, from basic science to clinical therapy.">
+<meta property="og:url" content="https://internationalvitreoussociety.com/">
+<meta property="og:image" content="https://internationalvitreoussociety.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="International Vitreous Society logo">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
   /* Fonts are self-hosted (SIL Open Font License), so the page makes no third-party requests. */
@@ -246,7 +258,6 @@
   .card-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   @media (max-width: 820px) { .card-grid { grid-template-columns: 1fr; } }
   @media (max-width: 900px) and (min-width: 821px) { .card-grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-  .card .tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--slate); letter-spacing: 0.06em; }
   .card {
     background: var(--paper-raised);
     border: 1px solid var(--line);
@@ -263,19 +274,10 @@
   .register { margin-top: 22px; }
   .register-row {
     display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: 18px;
     padding: 16px 0;
     border-top: 1px solid var(--line);
   }
   .register-row:last-child { border-bottom: 1px solid var(--line); }
-  .register-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--slate);
-    letter-spacing: 0.04em;
-    padding-top: 2px;
-  }
   .register-row p { margin: 0; color: var(--ink-soft); }
   .register-row strong { color: var(--ink); font-weight: 600; }
 
@@ -286,7 +288,7 @@
   .gov-name .person { font-family: 'Source Serif 4', serif; font-size: 1.2rem; margin-top: 4px; }
   .gov-name .aff { font-size: 0.88rem; color: var(--ink-soft); margin-top: 2px; }
   .gov-note { color: var(--ink-soft); font-size: 0.95rem; max-width: 46ch; border-left: 2px solid var(--line); padding-left: 18px; }
-  .legal-line { margin-top: 22px; font-size: 0.9rem; color: var(--slate); }
+  .legal-line { margin-top: 22px; font-size: 0.98rem; color: var(--ink-soft); max-width: 72ch; }
 
   /* CTA / involvement: a deliberately fixed dark panel, independent of page theme */
   .involve {
@@ -407,13 +409,13 @@
 <div class="wrap">
 
   <section class="block" id="mission">
-    <div class="eyebrow">Art. 2 &middot; Object</div>
+    <div class="eyebrow">Mission</div>
     <h2>Why this society exists</h2>
     <p class="mission-quote">The Society advances scientific understanding, clinical management, and awareness of the vitreous as a structure in its own right: its composition, biomechanics and ageing; its role in vitreoretinal disease; and its replacement.</p>
   </section>
 
   <section class="block" id="field">
-    <div class="eyebrow">R1 &middot; Field of work</div>
+    <div class="eyebrow">Field of work</div>
     <h2>What the society covers</h2>
     <div class="index-grid">
       <div class="index-col">
@@ -434,11 +436,11 @@
         <div class="index-item"><span class="index-tick">&#9679;</span><p>Terminology, classification and reporting standards</p></div>
       </div>
     </div>
-    <p class="legal-line">The list is not exhaustive. Changing it requires a four-fifths majority of the general assembly (art. 8.2).</p>
+    <p class="legal-line">The list is not exhaustive: work on any aspect of the vitreous is welcome.</p>
   </section>
 
   <section class="block" id="sections">
-    <div class="eyebrow">R8 &middot; Scientific sections</div>
+    <div class="eyebrow">Scientific sections</div>
     <h2>Three sections, one structure</h2>
     <div class="card-grid">
       <div class="card">
@@ -454,54 +456,46 @@
         <p>Substitutes, tamponade agents and the demands of vitreous replacement.</p>
       </div>
     </div>
-    <p class="legal-line">Each section nominates one officer, who joins the board once appointed by the general assembly (art. 4.2, R8.4). Six or more voting members may propose a further section within the field of work (R8.7).</p>
+    <p class="legal-line">Each founding section nominates an officer, who joins the board once appointed by the general assembly. Six or more voting members may propose a further section within the field of work.</p>
   </section>
 
   <section class="block" id="activities">
-    <div class="eyebrow">R2 &middot; Activities</div>
+    <div class="eyebrow">Activities</div>
     <h2>What the society will do</h2>
     <div class="register">
       <div class="register-row">
-        <div class="register-tag">R2.1</div>
         <p><strong>Public communication and outreach,</strong> including social media, to raise awareness of the field.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R2.2</div>
         <p><strong>Education and training,</strong> including courses held at meetings of other societies.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R2.3</div>
         <p><strong>Promotion of multicentre research, registries and shared protocols</strong> across member institutions.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R2.4</div>
         <p><strong>Publication of scientific information,</strong> independently or in partnership with an existing journal.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R2.5</div>
         <p><strong>A recurring scientific meeting,</strong> held at least once every two years.</p>
       </div>
     </div>
-    <p class="legal-line">First scientific meeting: to be scheduled once the founding board and the first membership circle are confirmed. During its first three cycles the meeting may be held as a satellite of an existing international congress; abstracts are reviewed anonymously by at least two reviewers (R13).</p>
+    <p class="legal-line">First scientific meeting: to be scheduled once the founding board and the first membership circle are confirmed. During its first three cycles the meeting may be held as a satellite of an existing international congress; abstracts are reviewed anonymously by at least two reviewers.</p>
   </section>
 
   <section class="block" id="membership">
-    <div class="eyebrow">Art. 3 &middot; Membership</div>
+    <div class="eyebrow">Membership</div>
     <h2>Who the society is for</h2>
     <h3 class="subhead">With voting rights</h3>
     <div class="card-grid">
       <div class="card">
-        <div class="tag">3.1 &middot; R5.1</div>
         <h3>Members</h3>
         <p>Any physician, scientist or other professional with demonstrable involvement in the field of work. Written application with the recommendation of one existing member; the board decides.</p>
       </div>
       <div class="card">
-        <div class="tag">R5.2</div>
         <h3>Members in training</h3>
         <p>Residents, fellows and doctoral candidates. Reduced dues.</p>
       </div>
       <div class="card">
-        <div class="tag">R5.3</div>
         <h3>Emeritus members</h3>
         <p>Members who no longer practise or research full time and request this status.</p>
       </div>
@@ -509,22 +503,18 @@
     <h3 class="subhead">Without voting rights</h3>
     <div class="card-grid card-grid-4">
       <div class="card">
-        <div class="tag">R5.4</div>
         <h3>Honorary members</h3>
         <p>Appointed by the general assembly on the board&#8217;s recommendation, for exceptional contribution to the field. Dues exempt.</p>
       </div>
       <div class="card">
-        <div class="tag">R5.5 &middot; R20.2</div>
         <h3>Company affiliates</h3>
         <p>Persons employed by commercial organisations active in the field of work. Admitted by a two-thirds vote of the board. Not on committees that decide on programme, education, publications or sponsorship.</p>
       </div>
       <div class="card">
-        <div class="tag">R5.6</div>
         <h3>Patient representatives</h3>
         <p>Nominated by a recognised patient organisation and appointed by the board. Take part in consensus panels and in setting research priorities. Dues exempt.</p>
       </div>
       <div class="card">
-        <div class="tag">R5.11</div>
         <h3>Donors</h3>
         <p>Persons and organisations that support the Society with a donation accepted by the board.</p>
       </div>
@@ -532,31 +522,25 @@
     <h3 class="subhead">What membership offers</h3>
     <div class="register">
       <div class="register-row">
-        <div class="register-tag">3.2 &middot; 6.2</div>
         <p><strong>A vote in the general assembly,</strong> in person or electronically, also before the meeting, and eligibility for office.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R8.3 &middot; R8.4</div>
         <p><strong>A home in one primary section,</strong> with a say in nominating its officer for the board.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R6.2</div>
         <p><strong>Reduced dues</strong> for members in training, for members working in low- and middle-income countries, and for long-standing members.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R7 &middot; R15</div>
         <p><strong>A part in working groups, abstract review and consensus panels,</strong> with consensus documents published open access, naming every panel member and every disclosure.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R18</div>
         <p><strong>Your work on the Society&#8217;s channels:</strong> a video of up to ninety seconds or a carousel of five to eight images, in the Society&#8217;s template and credited to you, after review by the social media committee.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R5.7</div>
         <p><strong>Fellowship of the International Vitreous Society,</strong> an honorary designation for a substantial contribution to the Society.</p>
       </div>
     </div>
-    <p class="legal-line">Honorary members, company affiliates, patient representatives and donors may attend and speak at the general assembly, but do not vote and are not eligible for office. A member who becomes an honorary member remains a member (art. 3.2).</p>
+    <p class="legal-line">Honorary members, company affiliates, patient representatives and donors may attend and speak at the general assembly.</p>
   </section>
 
   <section class="block" id="governance">
@@ -600,51 +584,42 @@
         <p class="focus">Hydrogel vitreous substitutes and intravitreal drug delivery.</p>
       </article>
     </div>
-    <p class="gov-note board-note">The founding board of four will be completed to at least five members (art. 4.1, 10). The secretary and the treasurer will be named in the deed of incorporation.</p>
+    <p class="gov-note board-note">The founding board of four will be completed to at least five members. The secretary and the treasurer will be named in the deed of incorporation.</p>
     <h3 class="subhead">How the Society is run</h3>
     <div class="register">
       <div class="register-row">
-        <div class="register-tag">6 &middot; R8.5</div>
         <p><strong>General assembly.</strong> The highest organ: all voting members, one vote each. Meets at least once a year, with electronic participation and voting. Appoints the board and adopts the accounts.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">4 &middot; R9</div>
         <p><strong>Board.</strong> Chair, secretary, treasurer, chair of education and programme, and the section officers, appointed by the general assembly for two years, without remuneration. No more than two board members may have their primary appointment in the same country, or work at the same institution.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R11</div>
         <p><strong>Scientific committee.</strong> Five to seven members, none of them on the board, at least two from a non-surgical discipline. Independent of the board on scientific content: sets the meeting programme, oversees abstract review and prepares consensus documents.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R29</div>
         <p><strong>Advisory Board.</strong> Founders who have left the board, and three to five appointed members of standing in the field. Advises the board, on request or on its own initiative.</p>
       </div>
     </div>
-    <p class="legal-line">To be constituted as a vereniging (a non-profit association) with full legal capacity under the law of the Netherlands, seat in Rotterdam. The articles of association and the rules of procedure will be published here once adopted, together with the composition of the board and committees and the entry in the Dutch trade register (R23.2).</p>
+    <p class="legal-line">To be constituted as a vereniging (a non-profit association) with full legal capacity under the law of the Netherlands, seat in Rotterdam. The articles of association and the rules of procedure will be published here once adopted, together with the composition of the board and committees and the entry in the Dutch trade register.</p>
   </section>
 
   <section class="block" id="independence">
-    <div class="eyebrow">Art. 5 &middot; Independence</div>
+    <div class="eyebrow">Independence</div>
     <h2>Independent of industry</h2>
     <div class="register">
       <div class="register-row">
-        <div class="register-tag">5.1</div>
         <p><strong>No commercial party</strong> determines, restricts or reviews the scientific programme, the content of education, publications and consensus documents, or the choice of speakers and faculty.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">5.2 &middot; R20.3</div>
         <p><strong>Industry support is unrestricted as to content,</strong> laid down in a written agreement, without exclusivity within a product category, and disclosed, including in the programme. Sponsors have no say in who receives grants and awards.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R20.4</div>
         <p><strong>Sponsors receive only</strong> acknowledgement, exhibition space and a clearly identified industry session outside the scientific programme. Members&#8217; and participants&#8217; data are not provided to sponsors.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R20.6</div>
         <p><strong>Published here each year:</strong> who supported the Society, with amount or value and purpose, and the interests declared by the board and the scientific committee.</p>
       </div>
       <div class="register-row">
-        <div class="register-tag">R19.2</div>
         <p><strong>No endorsements</strong> of commercial products or of the services of individual healthcare providers. Information on treatments states the level of scientific evidence.</p>
       </div>
     </div>
@@ -669,7 +644,6 @@
     <span>International Vitreous Society &middot; in formation, 2026 &middot; Rotterdam, Netherlands</span>
     <span><a href="mailto:info@internationalvitreoussociety.com">info@internationalvitreoussociety.com</a></span>
   </div>
-  <p class="privacy-line">Numbers refer to the draft articles of association (Art., or a plain number) and the draft rules of procedure (R).</p>
   <p class="privacy-line">This site sets no cookies and loads nothing from third parties. Email sent to the Society is used only to reply.</p>
 </footer>
 </body>
